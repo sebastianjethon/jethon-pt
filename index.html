@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Training Jethon – Leipzig</title>
+  <meta name="description" content="Personal Training Jethon – 1-on-1, 2-on-1 und Outdoor Training in Leipzig. Jetzt Termin buchen." />
+  <style>
+    /* ===================== RESET & BASE ===================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #5cb85c;
+      --green-dark: #449d44;
+      --green-glow: rgba(92, 184, 92, 0.15);
+      --grey-900: #111111;
+      --grey-800: #1c1c1c;
+      --grey-700: #2a2a2a;
+      --grey-600: #3a3a3a;
+      --grey-400: #888888;
+      --grey-200: #cccccc;
+      --white: #f5f5f5;
+      --font-head: 'Oswald', 'Impact', sans-serif;
+      --font-body: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      --nav-height: 68px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--grey-900);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap');
+
+    a { color: var(--green); text-decoration: none; }
+    a:hover { color: var(--green-dark); }
+
+    img { max-width: 100%; display: block; }
+
+    section { padding: 90px 24px; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 0.75rem;
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+
+    h2 span { color: var(--green); }
+
+    .btn {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 14px 36px;
+      border: 2px solid var(--green);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: var(--green);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--green);
+    }
+
+    .btn-outline:hover {
+      background: var(--green);
+      color: #fff;
+    }
+
+    /* ===================== NAVIGATION ===================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-height);
+      background: rgba(17, 17, 17, 0.97);
+      border-bottom: 1px solid var(--grey-700);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--white);
+    }
+
+    .nav-logo span { color: var(--green); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--grey-200);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--green); }
+
+    /* Language toggle */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      background: var(--grey-700);
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--grey-600);
+      margin-left: 16px;
+    }
+
+    .lang-toggle button {
+      background: none;
+      border: none;
+      color: var(--grey-400);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--green);
+      color: #fff;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* Mobile nav */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-height);
+      left: 0; right: 0;
+      background: var(--grey-800);
+      border-bottom: 1px solid var(--grey-700);
+      padding: 24px;
+      z-index: 999;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      color: var(--grey-200);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .mobile-lang {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .mobile-lang button {
+      background: var(--grey-700);
+      border: 1px solid var(--grey-600);
+      color: var(--grey-400);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 6px 14px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .mobile-lang button.active {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+
+    /* ===================== HERO ===================== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      background:
+        linear-gradient(to bottom right, rgba(17,17,17,0.92) 50%, rgba(28,28,28,0.85)),
+        url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1400&q=80') center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--grey-900));
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-top: var(--nav-height);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--green);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 2px;
+      background: var(--green);
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 24px;
+      color: var(--white);
+    }
+
+    .hero-title span { color: var(--green); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--grey-200);
+      max-width: 560px;
+      margin-bottom: 40px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-badge {
+      position: absolute;
+      right: 48px;
+      bottom: 120px;
+      width: 130px;
+      height: 130px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: var(--font-head);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.2;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* ===================== TRAINING TYPES ===================== */
+    #training {
+      background: var(--grey-800);
+    }
+
+    .training-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .training-card {
+      background: var(--grey-700);
+      border: 1px solid var(--grey-600);
+      border-top: 3px solid var(--green);
+      padding: 36px 28px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .training-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--green-glow);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .training-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+    .training-card:hover::after { opacity: 1; }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    .training-card h3 {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .training-card p {
+      color: var(--grey-200);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ===================== ABOUT ===================== */
+    #about {
+      background: var(--grey-900);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      margin-top: 48px;
+    }
+
+    .about-image {
+      aspect-ratio: 4/5;
+      background: var(--grey-700);
+      border: 2px solid var(--grey-600);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--grey-400);
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 24px;
+      position: relative;
+    }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: -8px; left: -8px;
+      width: 60px; height: 60px;
+      border-top: 3px solid var(--green);
+      border-left: 3px solid var(--green);
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      bottom: -8px; right: -8px;
+      width: 60px; height: 60px;
+      border-bottom: 3px solid var(--green);
+      border-right: 3px solid var(--green);
+    }
+
+    .about-text p {
+      color: var(--grey-200);
+      margin-bottom: 16px;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .stat {
+      background: var(--grey-800);
+      border-left: 3px solid var(--green);
+      padding: 16px 20px;
+    }
+
+    .stat-number {
+      font-family: var(--font-head);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+    }
+
+    .stat-label {
+      color: var(--grey-400);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    /* ===================== PRICING ===================== */
+    #pricing {
+      background: var(--grey-800);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .pricing-card {
+      background: var(--grey-700);
+      border: 1px solid var(--grey-600);
+      padding: 40px 32px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.2s;
+    }
+
+    .pricing-card.featured {
+      border: 2px solid var(--green);
+      transform: scale(1.03);
+    }
+
+    .pricing-card.featured::before {
+      content: attr(data-badge);
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--green);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 4px 16px;
+      white-space: nowrap;
+    }
+
+    .pricing-card:hover:not(.featured) { transform: translateY(-4px); }
+
+    .pricing-name {
+      font-family: var(--font-head);
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .pricing-desc {
+      color: var(--grey-400);
+      font-size: 0.875rem;
+      margin-bottom: 28px;
+    }
+
+    .pricing-price {
+      font-family: var(--font-head);
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .pricing-unit {
+      color: var(--grey-400);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 28px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 36px;
+      text-align: left;
+    }
+
+    .pricing-features li {
+      color: var(--grey-200);
+      font-size: 0.9rem;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--grey-600);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .pricing-note {
+      text-align: center;
+      color: var(--grey-400);
+      font-size: 0.85rem;
+      margin-top: 32px;
+    }
+
+    /* ===================== BOOKING ===================== */
+    #booking {
+      background: var(--grey-900);
+      text-align: center;
+    }
+
+    .booking-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .calendly-placeholder {
+      background: var(--grey-700);
+      border: 2px dashed var(--grey-600);
+      border-radius: 4px;
+      padding: 60px 32px;
+      margin-top: 48px;
+      color: var(--grey-400);
+      font-size: 0.9rem;
+    }
+
+    .calendly-placeholder strong {
+      display: block;
+      color: var(--green);
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    /* ===================== CONTACT ===================== */
+    #contact {
+      background: var(--grey-800);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 64px;
+      align-items: start;
+      margin-top: 48px;
+    }
+
+    .contact-info h3 {
+      font-family: var(--font-head);
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .contact-info p {
+      color: var(--grey-200);
+      margin-bottom: 12px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .contact-item-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .contact-item-text {
+      color: var(--grey-200);
+      font-size: 0.95rem;
+    }
+
+    form { display: flex; flex-direction: column; gap: 16px; }
+
+    input, textarea {
+      width: 100%;
+      background: var(--grey-700);
+      border: 1px solid var(--grey-600);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+
+    input::placeholder, textarea::placeholder { color: var(--grey-400); }
+    input:focus, textarea:focus { border-color: var(--green); }
+
+    textarea { min-height: 130px; }
+
+    form .btn { align-self: flex-start; border: none; cursor: pointer; font-family: var(--font-head); }
+
+    /* ===================== FOOTER ===================== */
+    footer {
+      background: var(--grey-900);
+      border-top: 1px solid var(--grey-700);
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: var(--font-head);
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .footer-logo span { color: var(--green); }
+
+    .footer-sub {
+      color: var(--grey-400);
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .footer-links a {
+      color: var(--grey-400);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--green); }
+
+    .footer-copy {
+      color: var(--grey-600);
+      font-size: 0.8rem;
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .about-grid,
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+
+      .about-image { aspect-ratio: 3/2; }
+
+      .pricing-card.featured { transform: none; }
+
+      .hero-badge { display: none; }
+
+      section { padding: 64px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2.8rem; }
+      .about-stats { grid-template-columns: 1fr; }
+    }
+
+    /* ===================== SCROLL REVEAL (lightweight) ===================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">Personal Training <span>Jethon</span></div>
+
+      <ul class="nav-links">
+        <li><a href="#training" data-de="Training" data-en="Training">Training</a></li>
+        <li><a href="#about" data-de="Über mich" data-en="About Me">Über mich</a></li>
+        <li><a href="#pricing" data-de="Preise" data-en="Pricing">Preise</a></li>
+        <li><a href="#booking" data-de="Buchen" data-en="Book">Buchen</a></li>
+        <li><a href="#contact" data-de="Kontakt" data-en="Contact">Kontakt</a></li>
+      </ul>
+
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="lang-toggle">
+          <button id="btn-de" class="active" onclick="setLang('de')">DE</button>
+          <button id="btn-en" onclick="setLang('en')">EN</button>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menü öffnen" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#training" onclick="toggleMenu()" data-de="Training" data-en="Training">Training</a>
+    <a href="#about" onclick="toggleMenu()" data-de="Über mich" data-en="About Me">Über mich</a>
+    <a href="#pricing" onclick="toggleMenu()" data-de="Preise" data-en="Pricing">Preise</a>
+    <a href="#booking" onclick="toggleMenu()" data-de="Buchen" data-en="Book">Buchen</a>
+    <a href="#contact" onclick="toggleMenu()" data-de="Kontakt" data-en="Contact">Kontakt</a>
+    <div class="mobile-lang">
+      <button id="mobile-btn-de" class="active" onclick="setLang('de')">DE</button>
+      <button id="mobile-btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow" data-de="Leipzig · Personal Training" data-en="Leipzig · Personal Training">Leipzig · Personal Training</div>
+      <h1 class="hero-title">
+        <span data-de="Dein Körper." data-en="Your Body.">Dein Körper.</span><br>
+        <span data-de="Dein Ziel." data-en="Your Goal.">Dein Ziel.</span><br>
+        <span style="color:var(--green)" data-de="Dein Trainer." data-en="Your Trainer.">Dein Trainer.</span>
+      </h1>
+      <p class="hero-sub" data-de="Professionelles Personal Training in Leipzig – individuell, effektiv und motivierend. Erreiche deine Fitnessziele mit persönlicher Betreuung." data-en="Professional personal training in Leipzig – individual, effective and motivating. Reach your fitness goals with dedicated personal coaching.">
+        Professionelles Personal Training in Leipzig – individuell, effektiv und motivierend. Erreiche deine Fitnessziele mit persönlicher Betreuung.
+      </p>
+      <div class="hero-cta">
+        <a href="#booking" class="btn" data-de="Termin buchen" data-en="Book a Session">Termin buchen</a>
+        <a href="#training" class="btn btn-outline" data-de="Mehr erfahren" data-en="Learn More">Mehr erfahren</a>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <span data-de="In Leipzig aktiv" data-en="Based in Leipzig">In Leipzig aktiv</span>
+    </div>
+  </section>
+
+  <!-- ===== TRAINING TYPES ===== -->
+  <section id="training">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label" data-de="Was ich anbiete" data-en="What I Offer">Was ich anbiete</p>
+        <h2 data-de="Trainings&shy;<span>arten</span>" data-en="Types of <span>Training</span>">Trainings<span>arten</span></h2>
+        <p style="color:var(--grey-200);max-width:560px;" data-de="Jedes Training ist auf dich und deine Ziele abgestimmt. Egal ob solo, zu zweit oder im Freien – ich bringe das Beste aus dir heraus." data-en="Every session is tailored to you and your goals. Whether solo, in pairs, or outdoors – I'll bring out the best in you.">
+          Jedes Training ist auf dich und deine Ziele abgestimmt. Egal ob solo, zu zweit oder im Freien – ich bringe das Beste aus dir heraus.
+        </p>
+      </div>
+      <div class="training-grid">
+        <div class="training-card reveal">
+          <span class="card-icon">🏋️</span>
+          <h3 data-de="1-on-1 Training" data-en="1-on-1 Training">1-on-1 Training</h3>
+          <p data-de="Maximale Aufmerksamkeit, vollständig auf dich zugeschnittene Trainingspläne und direkte Korrekturen in Echtzeit. Das Beste, was du für deinen Fortschritt tun kannst." data-en="Maximum attention, fully personalised training plans and real-time corrections. The best investment you can make in your progress.">
+            Maximale Aufmerksamkeit, vollständig auf dich zugeschnittene Trainingspläne und direkte Korrekturen in Echtzeit. Das Beste, was du für deinen Fortschritt tun kannst.
+          </p>
+        </div>
+        <div class="training-card reveal">
+          <span class="card-icon">👥</span>
+          <h3 data-de="2-on-1 Training" data-en="2-on-1 Training">2-on-1 Training</h3>
+          <p data-de="Trainiere gemeinsam mit einer Freundin oder einem Freund – doppelte Motivation, halbe Kosten. Ich betreue euch beide individuell und sorge für maximale Ergebnisse." data-en="Train together with a friend – double the motivation, shared costs. I coach you both individually and make sure you get maximum results.">
+            Trainiere gemeinsam mit einer Freundin oder einem Freund – doppelte Motivation, halbe Kosten. Ich betreue euch beide individuell und sorge für maximale Ergebnisse.
+          </p>
+        </div>
+        <div class="training-card reveal">
+          <span class="card-icon">🌿</span>
+          <h3 data-de="Outdoor Training" data-en="Outdoor Training">Outdoor Training</h3>
+          <p data-de="Frische Luft, freie Natur und ein Workout, das wirklich fordert. Wir trainieren in Parks und Außenbereichen Leipzigs – effektiv, abwechslungsreich und ohne Fitnessstudio." data-en="Fresh air, open nature and a workout that truly challenges you. We train in Leipzig's parks and outdoor spaces – effective, varied and gym-free.">
+            Frische Luft, freie Natur und ein Workout, das wirklich fordert. Wir trainieren in Parks und Außenbereichen Leipzigs – effektiv, abwechslungsreich und ohne Fitnessstudio.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image reveal">
+          <p data-de="Dein Foto hier einfügen" data-en="Insert your photo here">📷<br><br>Dein Foto hier einfügen</p>
+        </div>
+        <div class="about-text reveal">
+          <p class="section-label" data-de="Wer ich bin" data-en="Who I Am">Wer ich bin</p>
+          <h2 data-de="Über <span>mich</span>" data-en="About <span>Me</span>">Über <span>mich</span></h2>
+          <p data-de="Hey, ich bin Sebastian – zertifizierter Personal Trainer aus Leipzig. Mit Leidenschaft für Sport und Fitness helfe ich Menschen dabei, ihre Ziele zu erreichen und nachhaltige Gewohnheiten aufzubauen." data-en="Hey, I'm Sebastian – a certified personal trainer from Leipzig. With a passion for sport and fitness, I help people reach their goals and build lasting habits.">
+            Hey, ich bin Sebastian – zertifizierter Personal Trainer aus Leipzig. Mit Leidenschaft für Sport und Fitness helfe ich Menschen dabei, ihre Ziele zu erreichen und nachhaltige Gewohnheiten aufzubauen.
+          </p>
+          <p data-de="Mein Ansatz ist einfach: kein One-Size-Fits-All. Ich höre zu, analysiere deine Ausgangssituation und entwickle einen Plan, der wirklich zu dir passt – ob du abnehmen, Muskeln aufbauen oder einfach fitter werden willst." data-en="My approach is simple: no one-size-fits-all. I listen, assess your starting point and create a plan that truly fits you – whether you want to lose weight, build muscle, or simply get fitter.">
+            Mein Ansatz ist einfach: kein One-Size-Fits-All. Ich höre zu, analysiere deine Ausgangssituation und entwickle einen Plan, der wirklich zu dir passt – ob du abnehmen, Muskeln aufbauen oder einfach fitter werden willst.
+          </p>
+          <div class="about-stats">
+            <div class="stat">
+              <div class="stat-number">5+</div>
+              <div class="stat-label" data-de="Jahre Erfahrung" data-en="Years Experience">Jahre Erfahrung</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">100+</div>
+              <div class="stat-label" data-de="Zufriedene Kunden" data-en="Happy Clients">Zufriedene Kunden</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">3</div>
+              <div class="stat-label" data-de="Trainingsformate" data-en="Training Formats">Trainingsformate</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">Leipzig</div>
+              <div class="stat-label" data-de="Standort" data-en="Location">Standort</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section id="pricing">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <p class="section-label" data-de="Transparente Preise" data-en="Transparent Pricing">Transparente Preise</p>
+        <h2 data-de="Preis&shy;<span>übersicht</span>" data-en="Pricing <span>Overview</span>">Preis<span>übersicht</span></h2>
+        <p style="color:var(--grey-200);max-width:560px;margin:0 auto;" data-de="Klar, fair und ohne versteckte Kosten. Kontaktiere mich für Pakete und Rabatte bei mehreren Einheiten." data-en="Clear, fair and no hidden fees. Contact me for packages and discounts on multiple sessions.">
+          Klar, fair und ohne versteckte Kosten. Kontaktiere mich für Pakete und Rabatte bei mehreren Einheiten.
+        </p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card reveal" data-badge="Beliebt">
+          <div class="pricing-name" data-de="1-on-1" data-en="1-on-1">1-on-1</div>
+          <div class="pricing-desc" data-de="Einzelstunde" data-en="Single session">Einzelstunde</div>
+          <div class="pricing-price">€XX</div>
+          <div class="pricing-unit" data-de="pro Einheit (60 Min.)" data-en="per session (60 min.)">pro Einheit (60 Min.)</div>
+          <ul class="pricing-features">
+            <li data-de="Individueller Trainingsplan" data-en="Individual training plan">Individueller Trainingsplan</li>
+            <li data-de="Persönliche Betreuung" data-en="Personal coaching">Persönliche Betreuung</li>
+            <li data-de="Echtzeit-Korrekturen" data-en="Real-time corrections">Echtzeit-Korrekturen</li>
+            <li data-de="Fortschrittstracking" data-en="Progress tracking">Fortschrittstracking</li>
+          </ul>
+          <a href="#booking" class="btn" data-de="Jetzt buchen" data-en="Book Now">Jetzt buchen</a>
+        </div>
+
+        <div class="pricing-card featured reveal" data-badge="Empfohlen">
+          <div class="pricing-name" data-de="2-on-1" data-en="2-on-1">2-on-1</div>
+          <div class="pricing-desc" data-de="Pro Person / Einheit" data-en="Per person / session">Pro Person / Einheit</div>
+          <div class="pricing-price">€XX</div>
+          <div class="pricing-unit" data-de="pro Person (60 Min.)" data-en="per person (60 min.)">pro Person (60 Min.)</div>
+          <ul class="pricing-features">
+            <li data-de="Zwei Personen, ein Trainer" data-en="Two people, one trainer">Zwei Personen, ein Trainer</li>
+            <li data-de="Individuelle Betreuung für beide" data-en="Individual coaching for both">Individuelle Betreuung für beide</li>
+            <li data-de="Gemeinsame Motivation" data-en="Shared motivation">Gemeinsame Motivation</li>
+            <li data-de="Günstiger als 1-on-1" data-en="More affordable than 1-on-1">Günstiger als 1-on-1</li>
+          </ul>
+          <a href="#booking" class="btn" data-de="Jetzt buchen" data-en="Book Now">Jetzt buchen</a>
+        </div>
+
+        <div class="pricing-card reveal">
+          <div class="pricing-name" data-de="Outdoor" data-en="Outdoor">Outdoor</div>
+          <div class="pricing-desc" data-de="In Leipzigs Parks" data-en="In Leipzig's parks">In Leipzigs Parks</div>
+          <div class="pricing-price">€XX</div>
+          <div class="pricing-unit" data-de="pro Einheit (60 Min.)" data-en="per session (60 min.)">pro Einheit (60 Min.)</div>
+          <ul class="pricing-features">
+            <li data-de="Freiluft-Training" data-en="Open-air training">Freiluft-Training</li>
+            <li data-de="Kein Fitnessstudio nötig" data-en="No gym required">Kein Fitnessstudio nötig</li>
+            <li data-de="Abwechslungsreiche Übungen" data-en="Varied exercises">Abwechslungsreiche Übungen</li>
+            <li data-de="1-on-1 oder 2-on-1 möglich" data-en="1-on-1 or 2-on-1 available">1-on-1 oder 2-on-1 möglich</li>
+          </ul>
+          <a href="#booking" class="btn" data-de="Jetzt buchen" data-en="Book Now">Jetzt buchen</a>
+        </div>
+      </div>
+      <p class="pricing-note reveal" data-de="* Alle Preise inkl. MwSt. Pakete mit 5 oder 10 Einheiten auf Anfrage." data-en="* All prices incl. VAT. Packages of 5 or 10 sessions available on request.">
+        * Alle Preise inkl. MwSt. Pakete mit 5 oder 10 Einheiten auf Anfrage.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== BOOKING ===== -->
+  <section id="booking">
+    <div class="container">
+      <div class="booking-inner">
+        <div class="reveal">
+          <p class="section-label" data-de="Jetzt starten" data-en="Get Started">Jetzt starten</p>
+          <h2 data-de="Termin <span>buchen</span>" data-en="Book a <span>Session</span>">Termin <span>buchen</span></h2>
+          <p style="color:var(--grey-200);" data-de="Wähle einfach einen freien Termin und ich melde mich zur Bestätigung bei dir. Kein Stress, keine Verpflichtung." data-en="Simply pick an available slot and I'll confirm with you. No stress, no commitment.">
+            Wähle einfach einen freien Termin und ich melde mich zur Bestätigung bei dir. Kein Stress, keine Verpflichtung.
+          </p>
+        </div>
+
+        <!--
+          ============================================================
+          CALENDLY EMBED
+          Replace the src URL below with your own Calendly link.
+          Example: https://calendly.com/YOUR-USERNAME
+          ============================================================
+        -->
+        <div class="calendly-placeholder reveal">
+          <strong data-de="Calendly-Kalender" data-en="Calendly Calendar">Calendly-Kalender</strong>
+          <p data-de="Trage hier deine Calendly-URL ein, um den Buchungskalender anzuzeigen. Ersetze die Platzhalter-URL im HTML-Code (Kommentar: CALENDLY EMBED)." data-en="Insert your Calendly URL here to display the booking calendar. Replace the placeholder URL in the HTML code (comment: CALENDLY EMBED).">
+            Trage hier deine Calendly-URL ein, um den Buchungskalender anzuzeigen.<br>Ersetze die Platzhalter-URL im HTML-Code (Kommentar: CALENDLY EMBED).
+          </p>
+          <!-- Uncomment and replace URL when ready:
+          <div class="calendly-inline-widget" data-url="https://calendly.com/YOUR-USERNAME" style="min-width:320px;height:700px;"></div>
+          <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+          -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label" data-de="Schreib mir" data-en="Get in Touch">Schreib mir</p>
+        <h2 data-de="Kontakt" data-en="Contact">Kontakt</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <h3 data-de="Lass uns reden" data-en="Let's Talk">Lass uns reden</h3>
+          <p data-de="Hast du Fragen zu meinen Angeboten oder möchtest du einfach unverbindlich Kontakt aufnehmen? Schreib mir – ich antworte in der Regel innerhalb von 24 Stunden." data-en="Have questions about my services or just want to get in touch? Write to me – I usually reply within 24 hours.">
+            Hast du Fragen zu meinen Angeboten oder möchtest du einfach unverbindlich Kontakt aufnehmen? Schreib mir – ich antworte in der Regel innerhalb von 24 Stunden.
+          </p>
+          <div class="contact-item">
+            <span class="contact-item-icon">📍</span>
+            <span class="contact-item-text">Leipzig, Deutschland</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-icon">📧</span>
+            <span class="contact-item-text">deine@email.de</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-icon">📱</span>
+            <span class="contact-item-text">+49 XXX XXXXXXX</span>
+          </div>
+        </div>
+
+        <!--
+          ============================================================
+          FORMSPREE CONTACT FORM
+          1. Go to formspree.io and create a free account
+          2. Create a new form and copy your form endpoint
+          3. Replace "YOUR_FORM_ID" in the action URL below
+          ============================================================
+        -->
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="reveal">
+          <input type="text" name="name" required
+            data-placeholder-de="Dein Name" data-placeholder-en="Your Name"
+            placeholder="Dein Name" />
+          <input type="email" name="email" required
+            data-placeholder-de="Deine E-Mail-Adresse" data-placeholder-en="Your Email Address"
+            placeholder="Deine E-Mail-Adresse" />
+          <input type="text" name="subject"
+            data-placeholder-de="Betreff (z.B. Anfrage 1-on-1 Training)" data-placeholder-en="Subject (e.g. Enquiry 1-on-1 Training)"
+            placeholder="Betreff (z.B. Anfrage 1-on-1 Training)" />
+          <textarea name="message" required
+            data-placeholder-de="Deine Nachricht..." data-placeholder-en="Your message..."
+            placeholder="Deine Nachricht..."></textarea>
+          <button type="submit" class="btn" data-de="Nachricht senden" data-en="Send Message">Nachricht senden</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-logo">Personal Training <span>Jethon</span></div>
+    <p class="footer-sub">Leipzig, Deutschland</p>
+    <div class="footer-links">
+      <a href="#training" data-de="Training" data-en="Training">Training</a>
+      <a href="#about" data-de="Über mich" data-en="About Me">Über mich</a>
+      <a href="#pricing" data-de="Preise" data-en="Pricing">Preise</a>
+      <a href="#booking" data-de="Buchen" data-en="Book">Buchen</a>
+      <a href="#contact" data-de="Kontakt" data-en="Contact">Kontakt</a>
+    </div>
+    <p class="footer-copy" data-de="© 2025 Personal Training Jethon. Alle Rechte vorbehalten." data-en="© 2025 Personal Training Jethon. All rights reserved.">
+      © 2025 Personal Training Jethon. Alle Rechte vorbehalten.
+    </p>
+  </footer>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    /* ---- Language Toggle ---- */
+    let currentLang = 'de';
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+
+      // Update all elements with data-de / data-en attributes
+      document.querySelectorAll('[data-de]').forEach(el => {
+        const text = el.getAttribute('data-' + lang);
+        if (text) el.innerHTML = text;
+      });
+
+      // Update all input / textarea placeholders
+      document.querySelectorAll('[data-placeholder-de]').forEach(el => {
+        const ph = el.getAttribute('data-placeholder-' + lang);
+        if (ph) el.placeholder = ph;
+      });
+
+      // Update featured card badge
+      document.querySelectorAll('.pricing-card.featured').forEach(card => {
+        card.setAttribute('data-badge', lang === 'de' ? 'Empfohlen' : 'Recommended');
+      });
+      document.querySelectorAll('.pricing-card[data-badge="Beliebt"], .pricing-card[data-badge="Popular"]').forEach(card => {
+        card.setAttribute('data-badge', lang === 'de' ? 'Beliebt' : 'Popular');
+      });
+
+      // Toggle button active states (desktop + mobile)
+      ['', 'mobile-'].forEach(prefix => {
+        const deBtn = document.getElementById(prefix + 'btn-de');
+        const enBtn = document.getElementById(prefix + 'btn-en');
+        if (deBtn && enBtn) {
+          deBtn.classList.toggle('active', lang === 'de');
+          enBtn.classList.toggle('active', lang === 'en');
+        }
+      });
+    }
+
+    /* ---- Mobile Menu ---- */
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('open');
+    }
+
+    /* ---- Scroll Reveal ---- */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ---- Smooth active nav link highlight ---- */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => {
+        if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+      });
+      navLinks.forEach(link => {
+        link.style.color = link.getAttribute('href') === '#' + current ? 'var(--green)' : '';
+      });
+    }, { passive: true });
+
+    /* ---- Init with German ---- */
+    setLang('de');
+  </script>
+</body>
+</html>
